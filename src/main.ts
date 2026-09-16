@@ -84,7 +84,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <span class="spark">✦</span>
       <strong>Grove Rewards</strong>
       <p>Earn points on every drop.</p>
-      <button>Join the club</button>
+      <button id="join-club">Join the club</button>
     </div>
     <div class="profile">
       <div class="avatar">G</div>
@@ -128,6 +128,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </section>
     </div>
 
+    <div class="gorilla-takeover" hidden>
+      <div class="party-word one">GROVE</div>
+      <div class="party-word two">VALLEY</div>
+      <video src="/gorilla-dance.mp4" playsinline preload="metadata"></video>
+      <button class="close-party" aria-label="Close dancing gorilla">×</button>
+    </div>
     <div class="toast" role="status" aria-live="polite">Added to your bag</div>
   </main>
 `
@@ -188,4 +194,27 @@ document.querySelectorAll<HTMLButtonElement>('.nav-item').forEach((button) => {
 document.querySelector<HTMLInputElement>('.search input')!.addEventListener('input', applyFilters)
 document.querySelector<HTMLButtonElement>('.mobile-menu')!.addEventListener('click', () => {
   document.querySelector('.shop-sidebar')?.classList.toggle('open')
+})
+
+const takeover = document.querySelector<HTMLElement>('.gorilla-takeover')!
+const partyVideo = takeover.querySelector<HTMLVideoElement>('video')!
+
+const endParty = () => {
+  partyVideo.pause()
+  partyVideo.currentTime = 0
+  takeover.hidden = true
+}
+
+document.querySelector<HTMLButtonElement>('#join-club')!.addEventListener('click', () => {
+  takeover.hidden = false
+  partyVideo.currentTime = 0
+  partyVideo.muted = false
+  partyVideo.volume = 1
+  void partyVideo.play()
+})
+
+partyVideo.addEventListener('ended', endParty)
+document.querySelector<HTMLButtonElement>('.close-party')!.addEventListener('click', endParty)
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !takeover.hidden) endParty()
 })

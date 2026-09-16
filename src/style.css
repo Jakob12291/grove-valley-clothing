@@ -163,6 +163,35 @@ header p { margin: 0; color: var(--muted); font-size: 13px; white-space: nowrap;
 .add-button:hover, .add-button.added { background: var(--blurple); border-color: var(--blurple); }
 .price { margin: 5px 0 0; color: #b5bac1; font-size: 13px; }
 .empty-state { padding: 60px; color: var(--muted); text-align: center; }
+.gorilla-takeover {
+  position: fixed; inset: 0; z-index: 100; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(circle, rgba(88,101,242,.75), rgba(7,8,12,.97) 70%);
+  animation: party-flash .45s steps(2) infinite;
+}
+.gorilla-takeover[hidden] { display: none; }
+.gorilla-takeover video {
+  width: 100vw; height: 100vh; object-fit: contain; position: relative; z-index: 2;
+  filter: drop-shadow(0 0 55px rgba(140,151,255,.8));
+  animation: screen-dance .7s ease-in-out infinite alternate;
+}
+.party-word {
+  position: absolute; z-index: 1; font: 900 clamp(80px,18vw,280px)/.8 'Space Grotesk', sans-serif;
+  color: rgba(255,255,255,.1); letter-spacing: -12px; pointer-events: none;
+}
+.party-word.one { top: 7%; left: -3%; transform: rotate(-9deg); }
+.party-word.two { right: -3%; bottom: 7%; transform: rotate(8deg); }
+.close-party {
+  position: absolute; z-index: 4; top: 18px; right: 22px; width: 46px; height: 46px;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: rgba(0,0,0,.55);
+  color: white; cursor: pointer; font-size: 30px; line-height: 1;
+}
+@keyframes screen-dance {
+  from { transform: translate(-3vw, 1vh) rotate(-2deg) scale(1.03); }
+  to { transform: translate(3vw, -1vh) rotate(2deg) scale(1.1); }
+}
+@keyframes party-flash {
+  50% { background-color: rgba(108,61,190,.25); }
+}
 .toast {
   position: fixed; z-index: 30; right: 24px; bottom: 24px; padding: 12px 18px; border-radius: 7px;
   background: #23a559; box-shadow: 0 10px 35px rgba(0,0,0,.35); transform: translateY(30px); opacity: 0; transition: .25s; pointer-events: none; font-size: 13px; font-weight: 700;
