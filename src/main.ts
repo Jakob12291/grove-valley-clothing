@@ -54,7 +54,7 @@ const productCards = products.map((product, index) => `
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <aside class="server-rail" aria-label="Store shortcuts">
     <a class="server-logo active" href="#" aria-label="Grove Valley home">
-      <img id="gorilla-logo" src="/gorilla-dance.gif" alt="Dancing Grove Valley gorilla"/>
+      <video id="gorilla-logo" src="/gorilla-dance.mp4" aria-label="Dancing Grove Valley gorilla" autoplay muted loop playsinline></video>
       <span class="logo-fallback">GV</span>
     </a>
     <span class="rail-line"></span>
@@ -132,8 +132,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </main>
 `
 
-const logo = document.querySelector<HTMLImageElement>('#gorilla-logo')!
-logo.addEventListener('load', () => logo.parentElement?.classList.add('has-logo'))
+const logo = document.querySelector<HTMLVideoElement>('#gorilla-logo')!
+logo.addEventListener('loadeddata', () => logo.parentElement?.classList.add('has-logo'))
 logo.addEventListener('error', () => logo.remove())
 
 let cartCount = 0
