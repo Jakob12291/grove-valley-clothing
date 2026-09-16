@@ -1,5 +1,7 @@
 import './style.css'
 
+const baseUrl = import.meta.env.BASE_URL
+
 type Product = {
   name: string
   category: string
@@ -54,7 +56,7 @@ const productCards = products.map((product, index) => `
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <aside class="server-rail" aria-label="Store shortcuts">
     <a class="server-logo active" href="#" aria-label="Grove Valley home">
-      <video id="gorilla-logo" src="/gorilla-dance.mp4" aria-label="Dancing Grove Valley gorilla" autoplay muted loop playsinline></video>
+      <video id="gorilla-logo" src="${baseUrl}gorilla-dance.mp4" aria-label="Dancing Grove Valley gorilla" autoplay muted loop playsinline></video>
       <span class="logo-fallback">GV</span>
     </a>
     <span class="rail-line"></span>
@@ -131,7 +133,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="gorilla-takeover" hidden>
       <div class="party-word one">GROVE</div>
       <div class="party-word two">VALLEY</div>
-      <video src="/gorilla-dance.mp4" playsinline preload="metadata"></video>
+      <video src="${baseUrl}gorilla-dance.mp4" playsinline preload="metadata"></video>
       <button class="close-party" aria-label="Close dancing gorilla">×</button>
     </div>
     <div class="toast" role="status" aria-live="polite">Added to your bag</div>
